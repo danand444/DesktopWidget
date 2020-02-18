@@ -1,4 +1,4 @@
-﻿#Serial Port
+#Serial Port
 $serial_port = Read-Host -Prompt "Enter Serial Port as COMX"
 #Creation of Serial Port object
 $port = new-Object System.IO.Ports.SerialPort $serial_port.ToString(),9600,None,8,one
@@ -6,6 +6,8 @@ $port = new-Object System.IO.Ports.SerialPort $serial_port.ToString(),9600,None,
 $port.open()
 #CPU Core Count
 $CpuCores = (Get-WMIObject Win32_ComputerSystem).NumberOfLogicalProcessors
+#Exit Comment
+Write-Host "Press CTRL + C to Exit."
 
 while ($true) {
 #CPU Calculation
@@ -52,8 +54,8 @@ $port.Close()
 
 
 
-
-while (1 -eq 1) {
+#Simple Loop to Send text to the display
+while (1 -ne 1) {
 $read_out = Read-Host -Prompt "Say What?"
 $read_out = $read_out.Insert(0,1)
 $read_out = $read_out + "                      "
